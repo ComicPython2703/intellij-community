@@ -1,3 +1,5 @@
+[![official JetBrains project](http://jb.gg/badges/official.svg)](https://github.com/JetBrains/.github/blob/main/profile/README.md) [![IntelliJ IDEA build status](https://github.com/JetBrains/intellij-community/actions/workflows/IntelliJ_IDEA.yml/badge.svg?branch=master)](https://github.com/JetBrains/intellij-community/actions/workflows/IntelliJ_IDEA.yml?query=branch%3Amaster) [![PyCharm build status](https://github.com/JetBrains/intellij-community/actions/workflows/PyCharm.yml/badge.svg?branch=master)](https://github.com/JetBrains/intellij-community/actions/workflows/PyCharm.yml?query=branch%3Amaster)
+
 # IntelliJ 开源仓库
 
 本仓库是 JetBrains IDE 代码库的开源部分。
