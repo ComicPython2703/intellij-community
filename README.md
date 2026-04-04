@@ -1,42 +1,42 @@
 [![official JetBrains project](http://jb.gg/badges/official.svg)](https://github.com/JetBrains/.github/blob/main/profile/README.md) [![IntelliJ IDEA build status](https://github.com/JetBrains/intellij-community/actions/workflows/IntelliJ_IDEA.yml/badge.svg?branch=master)](https://github.com/JetBrains/intellij-community/actions/workflows/IntelliJ_IDEA.yml?query=branch%3Amaster) [![PyCharm build status](https://github.com/JetBrains/intellij-community/actions/workflows/PyCharm.yml/badge.svg?branch=master)](https://github.com/JetBrains/intellij-community/actions/workflows/PyCharm.yml?query=branch%3Amaster)
 
-# IntelliJ Open Source Repository
+# IntelliJ 开源仓库
 
-This repository is the open-source part of the JetBrains IDEs codebase.
-It also serves as the basis for [IntelliJ Platform development](https://www.jetbrains.com/opensource/idea). 
+本仓库是 JetBrains IDE 代码库的开源部分。
+它也是 [IntelliJ 平台开发](https://www.jetbrains.com/opensource/idea) 的基础。
 
-These instructions will help you build and run open source parts of IntelliJ Platform / IntelliJ IDEA / PyCharm.
+这些说明将帮助您构建并运行 IntelliJ 平台 / IntelliJ IDEA / PyCharm 的开源部分。
 
-If you are new to the community and would like to contribute code or help others learn, see [CONTRIBUTING.md](https://github.com/JetBrains/intellij-community/blob/master/CONTRIBUTING.md) to get started.
+如果您是社区新手，希望贡献代码或帮助他人学习，请参阅 [CONTRIBUTING.md](https://github.com/JetBrains/intellij-community/blob/master/CONTRIBUTING.md) 开始入门。
 
-The following conventions will be used to refer to directories on your machine:
-* `<USER_HOME>` is your OS user's home directory.
-* `<IDEA_HOME>` is the root directory for the **IntelliJ source code**.
+以下约定将用于指代您机器上的目录：
+* `<USER_HOME>` 是您操作系统用户的主目录。
+* `<IDEA_HOME>` 是 **IntelliJ 源代码** 的根目录。
 
 ___
-## Getting the Source Code
+## 获取源代码
 
-This section will guide you through getting the project sources and help avoid common issues in git config and other steps before opening it in the IDE.
+本节将指导您获取项目源码，并帮助您在 IDE 中打开项目之前，避免在 git 配置及其他步骤中遇到常见问题。
 
-#### Prerequisites
-- [Git](https://git-scm.com/) installed
-- Install [IntelliJ IDEA 2023.2](https://www.jetbrains.com/idea/download) or higher.
-- For **Windows** set these git config to avoid common issues during cloning:
+#### 前置条件
+- 已安装 [Git](https://git-scm.com/)
+- 安装 [IntelliJ IDEA 2023.2](https://www.jetbrains.com/idea/download) 或更高版本。
+- 对于 **Windows** 系统，请设置以下 git 配置以避免克隆过程中的常见问题：
   ```
   git config --global core.longpaths true
   git config --global core.autocrlf input
   ```
 
-#### Clone Main Repository
+#### 克隆主仓库
 
-IntelliJ open source repository is available from the [GitHub repository](https://github.com/JetBrains/intellij-community), which can be cloned or downloaded as a zip file (based on a branch) into `<IDEA_HOME>`. 
-The **master** (_default_) branch contains the source code which will be used to create the next major version of all JetBrains IDEs. 
-The branch names and build numbers for older releases of JetBrains IDEs can be found on the
-[Build Number Ranges](https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html) page.
+IntelliJ 开源仓库可从 [GitHub 仓库](https://github.com/JetBrains/intellij-community) 获取，可以克隆或下载为 zip 文件（基于某个分支）到 `<IDEA_HOME>`。
+**master**（_默认_）分支包含的源代码将用于创建所有 JetBrains IDE 的下一个主要版本。
+旧版 JetBrains IDE 的分支名称和内部版本号可以在
+[内部版本号范围](https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html) 页面找到。
 
-You can [clone this project](https://www.jetbrains.com/help/idea/manage-projects-hosted-on-github.html#clone-from-GitHub) directly using IntelliJ IDEA. 
+您可以直接使用 IntelliJ IDEA [克隆此项目](https://www.jetbrains.com/help/idea/manage-projects-hosted-on-github.html#clone-from-GitHub)。
 
-Alternatively, follow the steps below in a terminal:
+或者，在终端中按照以下步骤操作：
 
    ```
    git clone https://github.com/JetBrains/intellij-community.git
@@ -44,119 +44,119 @@ Alternatively, follow the steps below in a terminal:
    ```
 
 > [!TIP]
-> - **For faster download**: If the complete repository history isn't needed, create [shallow clone](https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---depthdepth)
-> To download only the latest revision of the repository,  add `--depth 1` option after `clone`.
-> - Cloning in IntelliJ IDEA also supports creating shallow clone.
+> - **为了更快下载**：如果不需要完整的仓库历史记录，可以创建[浅层克隆](https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---depthdepth)
+> 要仅下载仓库的最新版本，请在 `clone` 后添加 `--depth 1` 选项。
+> - 在 IntelliJ IDEA 中克隆也支持创建浅层克隆。
 
-#### Get Android Modules
-IntelliJ IDEA requires additional Android modules from separate Git repositories.
+#### 获取 Android 模块
+IntelliJ IDEA 需要从独立 Git 仓库获取额外的 Android 模块。
 
-Run the following script from project root `<IDEA_HOME>` to get the required modules:
-- Linux/macOS: `./getPlugins.sh`
-- Windows: `getPlugins.bat`
+在项目根目录 `<IDEA_HOME>` 下运行以下脚本以获取所需模块：
+- Linux/macOS：`./getPlugins.sh`
+- Windows：`getPlugins.bat`
 
 > [!IMPORTANT]
 >
->  Always `git checkout` the `intellij-community` and `android` Git repositories to the same branches/tags.
+>  请始终将 `intellij-community` 和 `android` Git 仓库 `git checkout` 到相同的分支/标签。
 
 
 ---
-## Building IntelliJ IDEA
+## 构建 IntelliJ IDEA
 
-> [Standard GitHub runners](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners) can no longer be used to build the project due to the disk size limitation.
-> Now we use [larger runners](https://docs.github.com/en/enterprise-cloud@latest/actions/concepts/runners/larger-runners) which are only available for organizations and enterprises using the GitHub Team or GitHub Enterprise Cloud plans.
-> Users of personal GitHub accounts can use [the prebuilt binaries](https://github.com/JetBrains/intellij-community/releases), 
-> or build IntelliJ IDEA from source code locally.
+> [标准 GitHub 运行器](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners) 由于磁盘大小限制，已无法用于构建此项目。
+> 现在我们使用[更大的运行器](https://docs.github.com/en/enterprise-cloud@latest/actions/concepts/runners/larger-runners)，这些运行器仅适用于使用 GitHub Team 或 GitHub Enterprise Cloud 计划的组织和企业。
+> 个人 GitHub 账户的用户可以使用[预编译的二进制文件](https://github.com/JetBrains/intellij-community/releases)，
+> 或者在本地从源代码构建 IntelliJ IDEA。
 
-These instructions will help you build IntelliJ IDEA from source code, which is the basis for IntelliJ Platform development.
-IntelliJ IDEA '**2023.2**' or newer is required.
+这些说明将帮助您从源代码构建 IntelliJ IDEA，这是 IntelliJ 平台开发的基础。
+需要 IntelliJ IDEA '**2023.2**' 或更高版本。
 
-### Opening the IntelliJ IDEA Source Code in the IDE
-Using the latest IntelliJ IDEA, click '**File | Open**', select the `<IDEA_HOME>` directory.
-If IntelliJ IDEA displays a message about a missing or out-of-date required plugin (e.g. Kotlin),
-[enable, upgrade, or install that plugin](https://www.jetbrains.com/help/idea/managing-plugins.html) and restart IntelliJ IDEA.
+### 在 IDE 中打开 IntelliJ IDEA 源代码
+使用最新的 IntelliJ IDEA，点击 '**文件 | 打开**'，选择 `<IDEA_HOME>` 目录。
+如果 IntelliJ IDEA 显示有关缺少或过时必需插件（例如 Kotlin）的消息，
+请[启用、升级或安装该插件](https://www.jetbrains.com/help/idea/managing-plugins.html) 并重启 IntelliJ IDEA。
 
 
-### Build Configuration Steps
-1. **JDK Setup**
+### 构建配置步骤
+1. **JDK 设置**
 
-- Use JetBrains Runtime 21 (without JCEF) to compile
-  - IDE will prompt to download it on the first build
+- 使用 JetBrains Runtime 21（不含 JCEF）进行编译
+  - IDE 将在首次构建时提示下载
 > [!IMPORTANT]
 >
-> JetBrains Runtime **without** JCEF is required. If `jbr-21` SDK points to JCEF version, change it to the non-JCEF version:
-> - Add `idea.is.internal=true` to `idea.properties` and restart the IDE.
-> - Go to '**Project Structure | SDKs**'
-> - Click 'Browse' → 'Download...'
-> - Select version 21 and vendor 'JetBrains Runtime'
-> - To confirm if the JDK is correct, navigate to the SDK page with jbr-21 selected. Search for `jcef`, it should **_NOT_** yield a result.
+> 需要**不含** JCEF 的 JetBrains Runtime。如果 `jbr-21` SDK 指向 JCEF 版本，请将其更改为非 JCEF 版本：
+> - 将 `idea.is.internal=true` 添加到 `idea.properties` 并重启 IDE。
+> - 转到 '**项目结构 | SDKs**'
+> - 点击 '浏览' → '下载...'
+> - 选择版本 21 和供应商 'JetBrains Runtime'
+> - 要确认 JDK 是否正确，请导航到选择 jbr-21 的 SDK 页面。搜索 `jcef`，应该**_不会_**产生任何结果。
 
-2. **Maven Configuration** : If the **Maven** plugin is disabled, [add the path variable](https://www.jetbrains.com/help/idea/absolute-path-variables.html) "**MAVEN_REPOSITORY**" pointing to `<USER_HOME>/.m2/repository` directory.
+2. **Maven 配置**：如果 **Maven** 插件被禁用，请[添加路径变量](https://www.jetbrains.com/help/idea/absolute-path-variables.html) "**MAVEN_REPOSITORY**"，指向 `<USER_HOME>/.m2/repository` 目录。
 
-3. **Memory Settings**
-  - Ensure a minimum **8GB** RAM on your computer.
-  - With the minimum RAM, disable "**Compile independent modules in parallel**" in '**Settings | Build, Execution, Deployment | Compiler**'.
-  - With notably higher available RAM, Increase "**User-local heap size**" to `3000`.
+3. **内存设置**
+  - 确保您的计算机至少有 **8GB** 内存。
+  - 如果内存刚好达到最小值，请在 '**设置 | 构建、执行、部署 | 编译器**' 中禁用 "**并行编译独立模块**"。
+  - 如果可用内存明显更高，请将 "**用户本地堆大小**" 增加到 `3000`。
 
 
-### Building the IntelliJ IDEA Application from Source
+### 从源代码构建 IntelliJ IDEA 应用程序
 
-**To build IntelliJ IDEA from source**, choose '**Build | Build Project**' from the main menu.
+**要从源代码构建 IntelliJ IDEA**，请从主菜单中选择 '**构建 | 构建项目**'。
 
-**To build installation packages**, run the [installers.cmd](installers.cmd) script in `<IDEA_HOME>` directory. `installers.cmd` will work on both Windows and Unix systems.
-Options to build installers are passed as system properties to `installers.cmd` command.
-You may find the list of available properties in [BuildOptions.kt](platform/build-scripts/src/org/jetbrains/intellij/build/BuildOptions.kt)
+**要构建安装包**，请在 `<IDEA_HOME>` 目录下运行 [installers.cmd](installers.cmd) 脚本。`installers.cmd` 可在 Windows 和 Unix 系统上运行。
+构建安装包的选项作为系统属性传递给 `installers.cmd` 命令。
+您可以在 [BuildOptions.kt](platform/build-scripts/src/org/jetbrains/intellij/build/BuildOptions.kt) 中找到可用属性列表。
 
-Pass --debug to suspend and wait for debugger at port 5005
+传递 --debug 可暂停并等待调试器连接到端口 5005
 
-Installer build examples:
+安装包构建示例：
 ```bash
-# Build installers only for current operating system:
+# 仅为当前操作系统构建安装包：
 ./installers.cmd -Dintellij.build.target.os=current
 ```
 
 > [!TIP]
 > 
-> The `installers.cmd` is used to run [OpenSourceCommunityInstallersBuildTarget](build/src/OpenSourceCommunityInstallersBuildTarget.kt) from the command line.
-> You can also call it directly from IDEA, using run configuration `Build IntelliJ IDEA Installers (current OS)`.
+> `installers.cmd` 用于从命令行运行 [OpenSourceCommunityInstallersBuildTarget](build/src/OpenSourceCommunityInstallersBuildTarget.kt)。
+> 您也可以直接在 IDEA 中调用它，使用运行配置 `Build IntelliJ IDEA Installers (current OS)`。
 
 
-#### Dockerized Build Environment
-To build installation packages inside a Docker container with preinstalled dependencies and tools, run the following command in `<IDEA_HOME>` directory (on Windows, use PowerShell):
+#### 使用 Docker 的构建环境
+要在预装了依赖项和工具的 Docker 容器内构建安装包，请在 `<IDEA_HOME>` 目录下运行以下命令（在 Windows 上，请使用 PowerShell）：
 ```bash
 docker build . --target intellij_idea --tag intellij_idea_env
 docker run --rm --user "$(id -u)" --volume "${PWD}:/community" intellij_idea_env
 ```
 > [!NOTE]
 > 
-> Please remember to specify the `--user "$(id -u)"` argument for the container's user to match the host's user.
-> This prevents issues with permissions for the checked-out repository, the build output, if any.
+> 请记得为容器的用户指定 `--user "$(id -u)"` 参数，以匹配主机的用户。
+> 这可以防止检出仓库、构建输出（如果有）出现权限问题。
 
 ---
-## Running IntelliJ IDEA
-To run the IntelliJ IDEA that was built from source, choose '**Run | Run**' from the main menu. This will use the preconfigured run configuration `IDEA`.
+## 运行 IntelliJ IDEA
+要运行从源代码构建的 IntelliJ IDEA，请从主菜单中选择 '**运行 | 运行**'。这将使用预配置的运行配置 `IDEA`。
 
-To run tests on the build, apply these settings to the '**Run | Edit Configurations... | Templates | JUnit**' configuration tab:
-* Working dir: `<IDEA_HOME>/bin`
-* VM options:  `-ea`
+要对构建运行测试，请将这些设置应用到 '**运行 | 编辑配置... | 模板 | JUnit**' 配置选项卡：
+* 工作目录：`<IDEA_HOME>/bin`
+* VM 选项：`-ea`
 
 
-#### Running IntelliJ IDEA in CI/CD environment
+#### 在 CI/CD 环境中运行 IntelliJ IDEA
 
-To run tests outside of IntelliJ IDEA, run the `tests.cmd` command in `<IDEA_HOME>` directory.`tests.cmd` can be used in both Windows and Unix systems.
-Options to run tests are passed as system properties to `tests.cmd` command.
-You may find the list of available properties in [TestingOptions.kt](platform/build-scripts/src/org/jetbrains/intellij/build/TestingOptions.kt)
+要在 IntelliJ IDEA 之外运行测试，请在 `<IDEA_HOME>` 目录下执行 `tests.cmd` 命令。`tests.cmd` 可在 Windows 和 Unix 系统上使用。
+运行测试的选项作为系统属性传递给 `tests.cmd` 命令。
+您可以在 [TestingOptions.kt](platform/build-scripts/src/org/jetbrains/intellij/build/TestingOptions.kt) 中找到可用属性列表。
 
 ```bash
-# Run specific run configuration:
+# 运行特定的运行配置：
 ./tests.cmd -Dintellij.build.test.configurations=ApiCheckTest
 ```
 ```bash
-# Run a specific test: 
+# 运行特定测试：
 ./tests.cmd -Dintellij.build.test.patterns=com.intellij.util.ArrayUtilTest
 ```
 
-to debug tests use: `-Dintellij.build.test.debug.suspend=true -Dintellij.build.test.debug.port=5005`
+要调试测试，请使用：`-Dintellij.build.test.debug.suspend=true -Dintellij.build.test.debug.port=5005`
 
-`tests.cmd` is used just to run [CommunityRunTestsBuildTarget](build/src/CommunityRunTestsBuildTarget.kt) from the command line.
-You can also call it directly from IDEA, see run configuration `tests` for an example.
+`tests.cmd` 仅用于从命令行运行 [CommunityRunTestsBuildTarget](build/src/CommunityRunTestsBuildTarget.kt)。
+您也可以直接在 IDEA 中调用它，示例请参见运行配置 `tests`。
